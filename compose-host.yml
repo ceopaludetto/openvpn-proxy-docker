@@ -13,18 +13,4 @@ services:
       - "/dev/net/tun:/dev/net/tun"
     cap_add:
       - NET_ADMIN
-    ports:
-      - "8888:8888" # Proxy
-      - "35001:35001" # SAML callback
-
-  # Proxy
-  tinyproxy:
-    container_name: Proxy
-    image: vimagick/tinyproxy:latest
-    network_mode: "service:vpn"
-    depends_on:
-      - vpn
-
-networks:
-  default:
-    driver: bridge
+    network_mode: host
